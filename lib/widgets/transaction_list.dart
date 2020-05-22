@@ -2,25 +2,22 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-
-
 class TransactionList extends StatelessWidget {
-final List<Transaction> transactions;
+  final List<Transaction> transactions;
 
-TransactionList(this.transactions);
+  TransactionList(this.transactions);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: ListView(
-        children: transactions.map((tx) {
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
           return Card(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   decoration: BoxDecoration(
                       border: Border.all(
                     color: Colors.black,
@@ -28,7 +25,7 @@ TransactionList(this.transactions);
                   )),
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    '${tx.amount} ₺',
+                    '${transactions[index].amount.toStringAsFixed(2)} ₺',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -39,18 +36,21 @@ TransactionList(this.transactions);
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(tx.title,
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    Text(DateFormat('dd MMM yyyy').format(tx.date),
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(transactions[index].title,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(
+                        DateFormat('dd MMM yyyy')
+                            .format(transactions[index].date),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
                   ],
                 )
               ],
             ),
           );
-        }).toList(),
+        },
+        itemCount: transactions.length,
       ),
     );
   }
