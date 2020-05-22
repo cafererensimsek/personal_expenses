@@ -1,3 +1,4 @@
+import 'package:app_1/widgets/user_transactions.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,12 +16,14 @@ class MyApp extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.blue,
-                  child: Text('Chart'),
-                  elevation: 5,
-                )),
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('Chart'),
+                elevation: 5,
+              ),
+            ),
+            UserTransactions(),
           ],
         ),
       ),
