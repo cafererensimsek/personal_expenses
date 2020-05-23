@@ -1,3 +1,1 @@
-# app_1
-
-Expense planner on Flutter
+Expense planner with Flutter
